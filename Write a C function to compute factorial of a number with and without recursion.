@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+// Function to compute factorial without recursion (Iterative)
+unsigned long long factorialIterative(int n) {
+    unsigned long long result = 1;
+    for (int i = 1; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+// Function to compute factorial with recursion (Recursive)
+unsigned long long factorialRecursive(int n) {
+    if (n == 0 || n == 1) {
+        return 1;
+    }
+    return n * factorialRecursive(n - 1);
+}
+
+int main() {
+    int num;
+
+    // Ask the user to input a number
+    printf("Enter a non-negative integer: ");
+    if (scanf("%d", &num) != 1) {
+        printf("Invalid input. Please enter a valid integer.\n");
+        return 1;
+    }
+
+    // Check for negative numbers or values that exceed 64-bit integer limits
+    if (num < 0) {
+        printf("Error: Factorial is not defined for negative numbers.\n");
+    } else if (num > 20) {
+        printf("Error: Input too large. Standard 64-bit integers can only hold up to 20! accurately.\n");
+    } else {
+        // Display both results
+        printf("\n--- Results for %d! ---\n", num);
+        printf("Without Recursion (Iterative): %llu\n", factorialIterative(num));
+        printf("With Recursion (Recursive):    %llu\n", factorialRecursive(num));
+    }
+
+    return 0;
+}
